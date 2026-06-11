@@ -20,6 +20,7 @@ export interface ResumeJSON {
   experiences: Experience[];
   projects: Project[];
   skills: string[];
+  generated_email?: string;
 }
 
 export interface JobAnalysis {

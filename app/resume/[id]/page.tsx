@@ -16,10 +16,12 @@ export default function ResumePreviewPage() {
   const [error, setError] = useState<string | null>(null);
   const [isRegenerating, setIsRegenerating] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const [viewMode, setViewMode] = useState<"preview" | "edit-form" | "edit-json">("preview");
+  const [viewMode, setViewMode] = useState<"preview" | "edit-form" | "edit-json" | "email">("preview");
   const [editedJSON, setEditedJSON] = useState<string>("");
   const [editedForm, setEditedForm] = useState<ResumeJSON | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [isGeneratingEmail, setIsGeneratingEmail] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
 
   useEffect(() => {
     const fetchResume = async () => {
@@ -195,6 +197,49 @@ export default function ResumePreviewPage() {
     });
   };
 
+  const handleGenerateEmail = async (force: boolean = false) => {
+    setIsGeneratingEmail(true);
+    try {
+      const response = await fetch(`/api/resume/${id}/email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ force }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || "Failed to generate email");
+      }
+
+      const data = await response.json();
+      setResumeData(prev => {
+        if (!prev) return prev;
+        const updatedResume = {
+          ...prev.resume,
+          generated_email: data.email,
+        };
+        return {
+          ...prev,
+          resume: updatedResume,
+        };
+      });
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Failed to generate email");
+    } finally {
+      setIsGeneratingEmail(false);
+    }
+  };
+
+  const handleCopyEmail = () => {
+    if (!resumeData?.resume.generated_email) return;
+    navigator.clipboard.writeText(resumeData.resume.generated_email).then(() => {
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000);
+    });
+  };
+
   if (loading) {
     return (
       <div className="min-h-[100dvh] bg-chalk flex items-center justify-center">
@@ -259,7 +304,7 @@ export default function ResumePreviewPage() {
                 </h1>
               </Link>
               <span className="text-sm text-concrete">•</span>
-              <span className="text-xs text-concrete font-mono">
+              <span className="text-xs text-concrete font-mono truncate max-w-[100px] sm:max-w-none">
                 {companyName}
               </span>
             </div>
@@ -283,7 +328,7 @@ export default function ResumePreviewPage() {
       </nav>      {/* Sub navigation viewMode tabs - hidden in print */}
       <div className="no-print border-b border-hairline bg-white">
         <div className="max-w-[1200px] w-full mx-auto px-[16px] sm:px-[24px] lg:px-[32px]">
-          <div className="flex gap-[24px]">
+          <div className="flex gap-[24px] overflow-x-auto whitespace-nowrap">
             <button
               onClick={() => setViewMode("preview")}
               className={`pb-[12px] pt-[16px] border-b-2 transition-colors font-sans text-sm font-medium tracking-tight cursor-pointer focus:outline-none ${
@@ -314,12 +359,22 @@ export default function ResumePreviewPage() {
             >
               Edit JSON
             </button>
+            <button
+              onClick={() => setViewMode("email")}
+              className={`pb-[12px] pt-[16px] border-b-2 transition-colors font-sans text-sm font-medium tracking-tight cursor-pointer focus:outline-none ${
+                viewMode === "email"
+                  ? "border-graphite text-graphite"
+                  : "border-transparent text-concrete hover:text-graphite"
+              }`}
+            >
+              Email
+            </button>
           </div>
         </div>
       </div>
 
       {/* Resume Content */}
-      <main className={`resume-container bg-white max-w-[850px] mx-auto p-[40px] my-[32px] border ${viewMode === 'preview' ? 'border-hairline shadow-subtle-2' : 'border-graphite shadow-none'} print:border-0 print:my-0 print:p-0 print:shadow-none`}>
+      <main className={`resume-container bg-white max-w-[850px] mx-auto p-[16px] sm:p-[40px] my-[16px] sm:my-[32px] border ${viewMode === 'preview' ? 'border-hairline shadow-subtle-2' : 'border-graphite shadow-none'} print:border-0 print:my-0 print:p-0 print:shadow-none`}>
         {viewMode === "preview" && (
           <>
             {/* Header */}
@@ -660,7 +715,57 @@ export default function ResumePreviewPage() {
               </button>
             </div>
           </div>
-        )}     </main>
+        )}
+
+        {viewMode === "email" && (
+          <div className="space-y-[24px]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-[16px] pb-[16px] border-b border-hairline">
+              <div>
+                <h2 className="text-xl font-semibold text-graphite">Tailored Application Email</h2>
+                <p className="text-sm text-concrete">Tailored to {companyName} using your qualifications.</p>
+              </div>
+              {resume.generated_email && (
+                <div className="flex flex-wrap gap-[8px] sm:justify-end w-full sm:w-auto">
+                  <button
+                    onClick={() => handleGenerateEmail(true)}
+                    disabled={isGeneratingEmail}
+                    className="px-[12px] py-[6px] text-xs font-medium text-concrete hover:text-graphite hover:bg-mist rounded-buttons transition-colors cursor-pointer focus:outline-none disabled:opacity-50 flex-1 sm:flex-none"
+                  >
+                    {isGeneratingEmail ? "Regenerating..." : "Regenerate"}
+                  </button>
+                  <button
+                    onClick={handleCopyEmail}
+                    className="px-[12px] py-[6px] text-xs font-medium text-white bg-graphite hover:bg-carbon rounded-buttons transition-colors cursor-pointer focus:outline-none flex-1 sm:flex-none"
+                  >
+                    {copySuccess ? "Copied!" : "Copy to Clipboard"}
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {isGeneratingEmail && !resume.generated_email ? (
+              <div className="flex items-center justify-center py-[48px]">
+                <div className="text-concrete font-mono text-sm">Generating email...</div>
+              </div>
+            ) : resume.generated_email ? (
+              <div className="bg-mist p-[20px] rounded-cards border border-hairline font-sans text-sm text-graphite whitespace-pre-wrap leading-body">
+                {resume.generated_email}
+              </div>
+            ) : (
+              <div className="text-center py-[48px] space-y-[16px]">
+                <p className="text-concrete text-sm">No email generated for this resume yet.</p>
+                <button
+                  onClick={() => handleGenerateEmail(false)}
+                  disabled={isGeneratingEmail}
+                  className="px-[16px] py-[8px] bg-graphite text-white text-sm font-medium rounded-buttons hover:bg-carbon transition-colors cursor-pointer focus:outline-none disabled:opacity-50"
+                >
+                  {isGeneratingEmail ? "Generating Email..." : "Generate Email"}
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+      </main>
 
       <div className="no-print text-center py-8 text-sm text-concrete">
         <p>Click &quot;Export PDF&quot; to save this resume as a PDF file</p>
