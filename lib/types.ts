@@ -21,10 +21,19 @@ export interface ApplicationQuestion {
   answer?: string;
 }
 
+export interface Achievement {
+  title: string;
+  issuer: string;
+  location: string;
+  date: string;
+  bullets: string[];
+}
+
 export interface ResumeJSON {
   summary: string;
   experiences: Experience[];
   projects: Project[];
+  achievements?: Achievement[];
   skills: string[];
   generated_email?: string;
   application_questions?: ApplicationQuestion[];

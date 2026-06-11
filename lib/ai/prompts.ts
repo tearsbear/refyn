@@ -140,6 +140,15 @@ Return a JSON object matching this structure:
       "bullets": ["Array of rewritten bullets — each applying CAR/XYZ, each with a clear outcome"]
     }
   ],
+  "achievements": [
+    {
+      "title": "Achievement title (unchanged)",
+      "issuer": "Issuer name (unchanged)",
+      "location": "Location (unchanged)",
+      "date": "Date (unchanged)",
+      "bullets": ["Array of details or links (unchanged)"]
+    }
+  ],
   "skills": ["Array of skills (unchanged or reordered by relevance to target role)"]
 }
 

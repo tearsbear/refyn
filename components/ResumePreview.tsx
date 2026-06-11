@@ -105,6 +105,43 @@ export default function ResumePreview({ resume }: ResumePreviewProps) {
         </section>
       )}
 
+      {/* Achievements */}
+      {resume.achievements && resume.achievements.length > 0 && (
+        <section className="mb-6">
+          <h2 className="text-sm font-bold uppercase border-b border-pure-black mb-3 pb-1">
+            Achievement
+          </h2>
+          {resume.achievements.map((ach, idx) => (
+            <div key={idx} className="mb-4">
+              <div className="mb-2">
+                <h3 className="text-xs font-bold">{ach.title}</h3>
+                <div className="text-[11px] mt-0.5">
+                  {ach.issuer} • {ach.location} • {ach.date}
+                </div>
+              </div>
+              <ul className="list-disc ml-5 space-y-1">
+                {ach.bullets.map((bullet, bulletIdx) => (
+                  <li key={bulletIdx} className="text-[11px] leading-relaxed">
+                    {bullet.startsWith("http") ? (
+                      <a
+                        href={bullet}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline cursor-pointer"
+                      >
+                        {bullet}
+                      </a>
+                    ) : (
+                      bullet
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+      )}
+
       {/* Education */}
       <section className="mb-6">
         <h2 className="text-sm font-bold uppercase border-b border-pure-black mb-3 pb-1">

@@ -310,5 +310,16 @@
     "i18next",
     "Axios",
     "State Management"
+  ],
+  "achievements": [
+    {
+      "title": "1st Place in the Productivity Enhancement Track",
+      "issuer": "Unbound Creativity Hackathon with TRAE SOLO",
+      "location": "Indonesia",
+      "date": "30/05/2026",
+      "bullets": [
+        "https://www.linkedin.com/posts/alifyajiehan_trae-idosolo-coding-activity-7468144634817323008-YqYJ"
+      ]
+    }
   ]
 }
