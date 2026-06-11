@@ -1,4 +1,4 @@
-import { JOB_ANALYSIS_PROMPT, RESUME_TAILORING_PROMPT, EMAIL_GENERATION_PROMPT } from "./prompts";
+import { JOB_ANALYSIS_PROMPT, RESUME_TAILORING_PROMPT, EMAIL_GENERATION_PROMPT, QUESTION_ANSWER_PROMPT } from "./prompts";
 import { getAIProviderConfig, type AIProvider } from "./config";
 import type { JobAnalysis, ResumeJSON } from "../types";
 
@@ -138,6 +138,42 @@ Tailored Resume Details:
 - Projects: ${JSON.stringify(resume.projects, null, 2)}
 
 Write the tailored application email. Do NOT wrap it in JSON. Return the final email text directly.`,
+    },
+  ];
+
+  const response = await callOpenAI(messages, provider);
+  return response.trim();
+}
+
+export async function generateAnswerForQuestion(
+  companyName: string,
+  jobDescription: string,
+  resume: ResumeJSON,
+  question: string,
+  provider?: AIProvider,
+): Promise<string> {
+  const messages: OpenAIMessage[] = [
+    {
+      role: "system",
+      content: QUESTION_ANSWER_PROMPT,
+    },
+    {
+      role: "user",
+      content: `Company Name: ${companyName}
+      
+Job Description:
+${jobDescription}
+
+Tailored Resume Details:
+- Summary: ${resume.summary}
+- Skills: ${resume.skills.join(", ")}
+- Experiences: ${JSON.stringify(resume.experiences, null, 2)}
+- Projects: ${JSON.stringify(resume.projects, null, 2)}
+
+Application Question to Answer:
+"${question}"
+
+Write the tailored answer. Do NOT wrap it in JSON. Return the final answer text directly.`,
     },
   ];
 

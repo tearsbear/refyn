@@ -4,6 +4,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import type { ResumeJSON, Experience, Project } from "@/lib/types";
+import ResumePreview from "@/components/ResumePreview";
+import ResumeEditForm from "@/components/ResumeEditForm";
+import ResumeEditJSON from "@/components/ResumeEditJSON";
+import ResumeEmailView from "@/components/ResumeEmailView";
+import ResumeQuestionView from "@/components/ResumeQuestionView";
 
 export default function ResumePreviewPage() {
   const params = useParams();
@@ -16,12 +21,13 @@ export default function ResumePreviewPage() {
   const [error, setError] = useState<string | null>(null);
   const [isRegenerating, setIsRegenerating] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const [viewMode, setViewMode] = useState<"preview" | "edit-form" | "edit-json" | "email">("preview");
+  const [viewMode, setViewMode] = useState<"preview" | "edit-form" | "edit-json" | "email" | "Question">("preview");
   const [editedJSON, setEditedJSON] = useState<string>("");
   const [editedForm, setEditedForm] = useState<ResumeJSON | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [isGeneratingEmail, setIsGeneratingEmail] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
+  const [isGeneratingQuestionId, setIsGeneratingQuestionId] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchResume = async () => {
@@ -240,6 +246,112 @@ export default function ResumePreviewPage() {
     });
   };
 
+  const handleAddQuestion = async () => {
+    if (!resumeData) return;
+    const newQuestionId = Math.random().toString(36).substring(2, 11);
+    const currentQuestions = resumeData.resume.application_questions || [];
+    const updatedQuestions = [...currentQuestions, { id: newQuestionId, question: "" }];
+    
+    setResumeData(prev => {
+      if (!prev) return prev;
+      return {
+        ...prev,
+        resume: {
+          ...prev.resume,
+          application_questions: updatedQuestions,
+        }
+      };
+    });
+
+    try {
+      await fetch(`/api/resume/${id}/question`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          action: "save",
+          questionId: newQuestionId,
+          questionText: "",
+        }),
+      });
+    } catch (err) {
+      console.error("Failed to add question:", err);
+    }
+  };
+
+  const handleDeleteQuestion = async (questionId: string) => {
+    if (!resumeData) return;
+    const currentQuestions = resumeData.resume.application_questions || [];
+    const updatedQuestions = currentQuestions.filter(q => q.id !== questionId);
+    
+    setResumeData(prev => {
+      if (!prev) return prev;
+      return {
+        ...prev,
+        resume: {
+          ...prev.resume,
+          application_questions: updatedQuestions,
+        }
+      };
+    });
+
+    try {
+      await fetch(`/api/resume/${id}/question`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          action: "delete",
+          questionId,
+        }),
+      });
+    } catch (err) {
+      console.error("Failed to delete question:", err);
+    }
+  };
+
+  const handleGenerateQuestion = async (questionId: string, questionText: string) => {
+    if (!resumeData || !questionText.trim()) return;
+    setIsGeneratingQuestionId(questionId);
+
+    try {
+      const response = await fetch(`/api/resume/${id}/question`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          action: "generate",
+          questionId,
+          questionText,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || "Failed to generate answer");
+      }
+
+      const data = await response.json();
+      setResumeData(prev => {
+        if (!prev) return prev;
+        return {
+          ...prev,
+          resume: {
+            ...prev.resume,
+            application_questions: data.questions,
+          }
+        };
+      });
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Failed to generate answer");
+    } finally {
+      setIsGeneratingQuestionId(null);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-[100dvh] bg-chalk flex items-center justify-center">
@@ -369,6 +481,16 @@ export default function ResumePreviewPage() {
             >
               Email
             </button>
+            <button
+              onClick={() => setViewMode("Question")}
+              className={`pb-[12px] pt-[16px] border-b-2 transition-colors font-sans text-sm font-medium tracking-tight cursor-pointer focus:outline-none ${
+                viewMode === "Question"
+                  ? "border-graphite text-graphite"
+                  : "border-transparent text-concrete hover:text-graphite"
+              }`}
+            >
+              Question
+            </button>
           </div>
         </div>
       </div>
@@ -376,394 +498,53 @@ export default function ResumePreviewPage() {
       {/* Resume Content */}
       <main className={`resume-container bg-white max-w-[850px] mx-auto p-[16px] sm:p-[40px] my-[16px] sm:my-[32px] border ${viewMode === 'preview' ? 'border-hairline shadow-subtle-2' : 'border-graphite shadow-none'} print:border-0 print:my-0 print:p-0 print:shadow-none`}>
         {viewMode === "preview" && (
-          <>
-            {/* Header */}
-            <div className="text-center mb-6 pb-4 border-b-2 border-pure-black">
-              <h1 className="text-3xl font-bold mb-2">Alifya Jiehan Anandika</h1>
-              <div className="text-[11px] mt-2">
-                jiehanandika@gmail.com <span className="mx-2">|</span> +62 897 6203
-                842 <span className="mx-2">|</span>{" "}
-                <a
-                  href="https://jiaan.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:underline cursor-pointer"
-                >
-                  https://jiaan.vercel.app
-                </a>{" "}
-                <span className="mx-2">|</span> Jakarta, Indonesia
-              </div>
-              <div className="text-[11px] mt-1">
-                Linkedin:{" "}
-                <a
-                  href="https://www.linkedin.com/in/alifyajiehan/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:underline cursor-pointer"
-                >
-                  https://www.linkedin.com/in/alifyajiehan
-                </a>{" "}
-                <span className="mx-2">|</span> Portofolio:{" "}
-                <a
-                  href="https://drive.google.com/drive/folders/1EJrGrpbsj2PEfhaJssq4K-L7ljqx4JMD"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:underline cursor-pointer"
-                >
-                  https://drive.google.com/drive/folders/1EJrGrpbsj2PEfhaJssq4K-L7ljqx4JMD
-                </a>
-              </div>
-            </div>
-
-            {/* Summary */}
-            <section className="mb-6">
-              <h2 className="text-sm font-bold uppercase border-b border-pure-black mb-3 pb-1">
-                Summary
-              </h2>
-              <p className="text-[11px] leading-relaxed text-justify">
-                {resume.summary}
-              </p>
-            </section>
-
-            {/* Experience */}
-            <section className="mb-6">
-              <h2 className="text-sm font-bold uppercase border-b border-pure-black mb-3 pb-1">
-                Experience
-              </h2>
-              {resume.experiences.map((exp: Experience, idx: number) => (
-                <div key={idx} className="mb-4">
-                  <div className="mb-2">
-                    <h3 className="text-xs font-bold">{exp.role}</h3>
-                    <div className="text-[11px] mt-0.5">
-                      {exp.company} • {exp.startDate} - {exp.endDate}
-                    </div>
-                  </div>
-                  <ul className="list-disc ml-5 space-y-1">
-                    {exp.bullets.map((bullet: string, bulletIdx: number) => (
-                      <li key={bulletIdx} className="text-[11px] leading-relaxed">
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </section>
-
-            {/* Projects */}
-            {resume.projects && resume.projects.length > 0 && (
-              <section className="mb-6">
-                <h2 className="text-sm font-bold uppercase border-b border-pure-black mb-3 pb-1">
-                  Project Experience
-                </h2>
-                {resume.projects.map((proj: Project, idx: number) => (
-                  <div key={idx} className="mb-4">
-                    <div className="mb-2">
-                      <h3 className="text-xs font-bold">{proj.title}</h3>
-                      <div className="text-[11px] mt-0.5">
-                        {proj.company} • {proj.location} • {proj.duration}
-                      </div>
-                    </div>
-                    <ul className="list-disc ml-5 space-y-1">
-                      {proj.bullets.map((bullet: string, bulletIdx: number) => (
-                        <li key={bulletIdx} className="text-[11px] leading-relaxed">
-                          {bullet}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </section>
-            )}
-
-            {/* Education */}
-            <section className="mb-6">
-              <h2 className="text-sm font-bold uppercase border-b border-pure-black mb-3 pb-1">
-                Education
-              </h2>
-              <div className="mb-3">
-                <div className="text-xs font-bold">Computer Science</div>
-                <div className="text-[11px]">
-                  Perbanas Institute • Jakarta, Indonesia
-                </div>
-              </div>
-              <div className="mb-3">
-                <div className="text-xs font-bold">Software Engineering</div>
-                <div className="text-[11px]">
-                  Vocational High School Prestasi Prima • Jakarta, Indonesia
-                </div>
-              </div>
-            </section>
-
-            {/* Skills */}
-            <section className="mb-6">
-              <h2 className="text-sm font-bold uppercase border-b border-pure-black mb-3 pb-1">
-                Skills
-              </h2>
-              <p className="text-[11px] leading-relaxed">
-                {resume.skills.join(", ")}
-              </p>
-            </section>
-
-            {/* Languages */}
-            <section>
-              <h2 className="text-sm font-bold uppercase border-b border-pure-black mb-3 pb-1">
-                Languages
-              </h2>
-              <p className="text-[11px]">
-                Indonesian (Native), English (Professional)
-              </p>
-            </section>
-          </>
+          <ResumePreview resume={resume} />
         )}
 
         {viewMode === "edit-form" && editedForm && (
-          <div className="space-y-[32px]">
-            <div>
-              <h2 className="text-xl font-semibold text-graphite mb-[8px]">Edit Form</h2>
-              <p className="text-sm text-concrete">Modify your tailored resume details below. Changes are saved back to the database.</p>
-            </div>
-
-            {/* Summary */}
-            <div className="space-y-[8px]">
-              <label className="block text-sm font-semibold text-graphite">Summary</label>
-              <textarea
-                value={editedForm.summary}
-                onChange={(e) => handleSummaryChange(e.target.value)}
-                rows={5}
-                className="w-full px-[12px] py-[10px] border border-hairline rounded-inputs bg-white text-graphite placeholder:text-concrete focus:outline-none focus:border-graphite transition-colors text-sm resize-none"
-              />
-            </div>
-
-            {/* Skills */}
-            <div className="space-y-[8px]">
-              <label className="block text-sm font-semibold text-graphite">Skills (comma-separated)</label>
-              <input
-                type="text"
-                value={editedForm.skills.join(", ")}
-                onChange={(e) => handleSkillsChange(e.target.value)}
-                className="w-full px-[12px] py-[10px] border border-hairline rounded-inputs bg-white text-graphite placeholder:text-concrete focus:outline-none focus:border-graphite transition-colors text-sm cursor-pointer"
-              />
-            </div>
-
-            {/* Experiences */}
-            <div className="space-y-[16px]">
-              <h3 className="text-base font-semibold text-graphite border-b border-hairline pb-[8px]">Work Experience</h3>
-              {editedForm.experiences.map((exp, idx) => (
-                <div key={idx} className="p-[16px] border border-hairline rounded-cards space-y-[12px] bg-chalk">
-                  <div className="grid grid-cols-2 gap-[12px]">
-                    <div className="space-y-[4px]">
-                      <label className="text-xs font-semibold text-concrete">Company</label>
-                      <input
-                        type="text"
-                        value={exp.company}
-                        onChange={(e) => handleExperienceFieldChange(idx, "company", e.target.value)}
-                        className="w-full px-[10px] py-[8px] border border-hairline rounded-inputs text-sm"
-                      />
-                    </div>
-                    <div className="space-y-[4px]">
-                      <label className="text-xs font-semibold text-concrete">Role</label>
-                      <input
-                        type="text"
-                        value={exp.role}
-                        onChange={(e) => handleExperienceFieldChange(idx, "role", e.target.value)}
-                        className="w-full px-[10px] py-[8px] border border-hairline rounded-inputs text-sm"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-[12px]">
-                    <div className="space-y-[4px]">
-                      <label className="text-xs font-semibold text-concrete">Start Date</label>
-                      <input
-                        type="text"
-                        value={exp.startDate}
-                        onChange={(e) => handleExperienceFieldChange(idx, "startDate", e.target.value)}
-                        className="w-full px-[10px] py-[8px] border border-hairline rounded-inputs text-sm"
-                      />
-                    </div>
-                    <div className="space-y-[4px]">
-                      <label className="text-xs font-semibold text-concrete">End Date</label>
-                      <input
-                        type="text"
-                        value={exp.endDate}
-                        onChange={(e) => handleExperienceFieldChange(idx, "endDate", e.target.value)}
-                        className="w-full px-[10px] py-[8px] border border-hairline rounded-inputs text-sm"
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-[4px]">
-                    <label className="text-xs font-semibold text-concrete">Bullets (one per line)</label>
-                    <textarea
-                      value={exp.bullets.join("\n")}
-                      onChange={(e) => handleExperienceBulletChange(idx, e.target.value)}
-                      rows={6}
-                      className="w-full px-[10px] py-[8px] border border-hairline rounded-inputs text-sm resize-none"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Projects */}
-            {editedForm.projects && editedForm.projects.length > 0 && (
-              <div className="space-y-[16px]">
-                <h3 className="text-base font-semibold text-graphite border-b border-hairline pb-[8px]">Projects</h3>
-                {editedForm.projects.map((proj, idx) => (
-                  <div key={idx} className="p-[16px] border border-hairline rounded-cards space-y-[12px] bg-chalk">
-                    <div className="grid grid-cols-2 gap-[12px]">
-                      <div className="space-y-[4px]">
-                        <label className="text-xs font-semibold text-concrete">Project Title</label>
-                        <input
-                          type="text"
-                          value={proj.title}
-                          onChange={(e) => handleProjectFieldChange(idx, "title", e.target.value)}
-                          className="w-full px-[10px] py-[8px] border border-hairline rounded-inputs text-sm"
-                        />
-                      </div>
-                      <div className="space-y-[4px]">
-                        <label className="text-xs font-semibold text-concrete">Company</label>
-                        <input
-                          type="text"
-                          value={proj.company}
-                          onChange={(e) => handleProjectFieldChange(idx, "company", e.target.value)}
-                          className="w-full px-[10px] py-[8px] border border-hairline rounded-inputs text-sm"
-                        />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-[12px]">
-                      <div className="space-y-[4px]">
-                        <label className="text-xs font-semibold text-concrete">Location</label>
-                        <input
-                          type="text"
-                          value={proj.location}
-                          onChange={(e) => handleProjectFieldChange(idx, "location", e.target.value)}
-                          className="w-full px-[10px] py-[8px] border border-hairline rounded-inputs text-sm"
-                        />
-                      </div>
-                      <div className="space-y-[4px]">
-                        <label className="text-xs font-semibold text-concrete">Duration</label>
-                        <input
-                          type="text"
-                          value={proj.duration}
-                          onChange={(e) => handleProjectFieldChange(idx, "duration", e.target.value)}
-                          className="w-full px-[10px] py-[8px] border border-hairline rounded-inputs text-sm"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-[4px]">
-                      <label className="text-xs font-semibold text-concrete">Bullets (one per line)</label>
-                      <textarea
-                        value={proj.bullets.join("\n")}
-                        onChange={(e) => handleProjectBulletChange(idx, e.target.value)}
-                        rows={6}
-                        className="w-full px-[10px] py-[8px] border border-hairline rounded-inputs text-sm resize-none"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* Form Actions */}
-            <div className="flex justify-end gap-[12px] pt-[16px] border-t border-hairline">
-              <button
-                onClick={() => setViewMode("preview")}
-                className="px-[16px] py-[8px] text-sm font-medium text-graphite hover:bg-mist rounded-buttons transition-colors cursor-pointer focus:outline-none"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleSaveForm}
-                disabled={isSaving}
-                className="px-[16px] py-[8px] text-sm font-medium text-white bg-graphite hover:bg-carbon rounded-buttons transition-colors cursor-pointer focus:outline-none disabled:opacity-50"
-              >
-                {isSaving ? "Saving..." : "Save Changes"}
-              </button>
-            </div>
-          </div>
+          <ResumeEditForm
+            editedForm={editedForm}
+            isSaving={isSaving}
+            onSummaryChange={handleSummaryChange}
+            onSkillsChange={handleSkillsChange}
+            onExperienceFieldChange={handleExperienceFieldChange}
+            onExperienceBulletChange={handleExperienceBulletChange}
+            onProjectFieldChange={handleProjectFieldChange}
+            onProjectBulletChange={handleProjectBulletChange}
+            onSave={handleSaveForm}
+            onCancel={() => setViewMode("preview")}
+          />
         )}
 
         {viewMode === "edit-json" && (
-          <div className="space-y-[24px]">
-            <div>
-              <h2 className="text-xl font-semibold text-graphite mb-[8px]">Edit JSON</h2>
-              <p className="text-sm text-concrete">Edit the raw JSON structure of your resume below. Ensure the syntax is valid JSON before saving.</p>
-            </div>
-
-            <div className="space-y-[8px]">
-              <textarea
-                value={editedJSON}
-                onChange={(e) => setEditedJSON(e.target.value)}
-                rows={24}
-                className="w-full p-[16px] border border-hairline rounded-inputs bg-mist text-graphite font-mono text-xs focus:outline-none focus:border-graphite transition-colors resize-y"
-              />
-            </div>
-
-            {/* JSON Actions */}
-            <div className="flex justify-end gap-[12px] pt-[16px] border-t border-hairline">
-              <button
-                onClick={() => setViewMode("preview")}
-                className="px-[16px] py-[8px] text-sm font-medium text-graphite hover:bg-mist rounded-buttons transition-colors cursor-pointer focus:outline-none"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleSaveJSON}
-                disabled={isSaving}
-                className="px-[16px] py-[8px] text-sm font-medium text-white bg-graphite hover:bg-carbon rounded-buttons transition-colors cursor-pointer focus:outline-none disabled:opacity-50"
-              >
-                {isSaving ? "Saving..." : "Save Changes"}
-              </button>
-            </div>
-          </div>
+          <ResumeEditJSON
+            editedJSON={editedJSON}
+            isSaving={isSaving}
+            setEditedJSON={setEditedJSON}
+            onSave={handleSaveJSON}
+            onCancel={() => setViewMode("preview")}
+          />
         )}
 
         {viewMode === "email" && (
-          <div className="space-y-[24px]">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-[16px] pb-[16px] border-b border-hairline">
-              <div>
-                <h2 className="text-xl font-semibold text-graphite">Tailored Application Email</h2>
-                <p className="text-sm text-concrete">Tailored to {companyName} using your qualifications.</p>
-              </div>
-              {resume.generated_email && (
-                <div className="flex flex-wrap gap-[8px] sm:justify-end w-full sm:w-auto">
-                  <button
-                    onClick={() => handleGenerateEmail(true)}
-                    disabled={isGeneratingEmail}
-                    className="px-[12px] py-[6px] text-xs font-medium text-concrete hover:text-graphite hover:bg-mist rounded-buttons transition-colors cursor-pointer focus:outline-none disabled:opacity-50 flex-1 sm:flex-none"
-                  >
-                    {isGeneratingEmail ? "Regenerating..." : "Regenerate"}
-                  </button>
-                  <button
-                    onClick={handleCopyEmail}
-                    className="px-[12px] py-[6px] text-xs font-medium text-white bg-graphite hover:bg-carbon rounded-buttons transition-colors cursor-pointer focus:outline-none flex-1 sm:flex-none"
-                  >
-                    {copySuccess ? "Copied!" : "Copy to Clipboard"}
-                  </button>
-                </div>
-              )}
-            </div>
+          <ResumeEmailView
+            companyName={companyName}
+            generatedEmail={resume.generated_email}
+            isGeneratingEmail={isGeneratingEmail}
+            copySuccess={copySuccess}
+            onGenerateEmail={handleGenerateEmail}
+            onCopyEmail={handleCopyEmail}
+          />
+        )}
 
-            {isGeneratingEmail && !resume.generated_email ? (
-              <div className="flex items-center justify-center py-[48px]">
-                <div className="text-concrete font-mono text-sm">Generating email...</div>
-              </div>
-            ) : resume.generated_email ? (
-              <div className="bg-mist p-[20px] rounded-cards border border-hairline font-sans text-sm text-graphite whitespace-pre-wrap leading-body">
-                {resume.generated_email}
-              </div>
-            ) : (
-              <div className="text-center py-[48px] space-y-[16px]">
-                <p className="text-concrete text-sm">No email generated for this resume yet.</p>
-                <button
-                  onClick={() => handleGenerateEmail(false)}
-                  disabled={isGeneratingEmail}
-                  className="px-[16px] py-[8px] bg-graphite text-white text-sm font-medium rounded-buttons hover:bg-carbon transition-colors cursor-pointer focus:outline-none disabled:opacity-50"
-                >
-                  {isGeneratingEmail ? "Generating Email..." : "Generate Email"}
-                </button>
-              </div>
-            )}
-          </div>
+        {viewMode === "Question" && (
+          <ResumeQuestionView
+            questions={resume.application_questions || []}
+            isGeneratingId={isGeneratingQuestionId}
+            onGenerateQuestion={handleGenerateQuestion}
+            onAddQuestion={handleAddQuestion}
+            onDeleteQuestion={handleDeleteQuestion}
+          />
         )}
       </main>
 

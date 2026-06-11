@@ -15,12 +15,19 @@ export interface Project {
   bullets: string[];
 }
 
+export interface ApplicationQuestion {
+  id: string;
+  question: string;
+  answer?: string;
+}
+
 export interface ResumeJSON {
   summary: string;
   experiences: Experience[];
   projects: Project[];
   skills: string[];
   generated_email?: string;
+  application_questions?: ApplicationQuestion[];
 }
 
 export interface JobAnalysis {
