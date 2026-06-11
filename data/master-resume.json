@@ -1,0 +1,314 @@
+{
+  "summary": "As a seasoned Frontend Developer with 5 years of experience, I specialize in curating engaging user interfaces and exceptional user experiences. My proficiency extends to UI/UX design, with Figma being my go-to tool for crafting interfaces that seamlessly blend form and function. I see myself as more than just a coder.",
+  "experiences": [
+    {
+      "company": "Diquest Inc.",
+      "role": "Front End Developer",
+      "startDate": "05/2025",
+      "endDate": "Present",
+      "technologies": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Redux Toolkit",
+        "Tailwind CSS"
+      ],
+      "bullets": [
+        "Developed (https://genwave.ploonet.com) AI content generation platform frontend using Next.js 14, React 18, Redux Toolkit, and Tailwind CSS for image, video, music, and character creation features.",
+        "Sliced Figma designs and built responsive UI components for AI chat assistant with real-time streaming using Server-Sent Events (SSE).",
+        "Implemented drag-and-drop video timeline editor using dnd-kit library and integrated backend APIs for video generation and TTS features.",
+        "Integrated Firebase authentication, Stripe payment gateway with webhook handling, and real-time notification system using SSE.",
+        "Created 170+ reusable UI components including modals, carousels, bottom sheets, and custom dropdowns for consistent design system.",
+        "Implemented internationalization using i18next and next-i18next for Korean and English language support with dynamic switching.",
+        "Built state management using Redux Toolkit with persistent storage and integrated backend APIs for user data, credits, and settings.",
+        "Developed media handling features including image uploads, base64 processing, video player controls, and streaming file downloads.",
+        "Implemented social features including user profiles, infinite scroll gallery, like/comment system, and content sharing functionality.",
+        "Integrated backend APIs using Axios with interceptors for authentication, error handling, and request/response transformations."
+      ]
+    },
+    {
+      "company": "Hyperhire",
+      "role": "Front End Developer",
+      "startDate": "11/2024",
+      "endDate": "04/2025",
+      "technologies": ["Next.js", "Tailwind CSS", "i18n"],
+      "bullets": [
+        "Developed AI video/music/image generator platform using Next.js, Tailwind, and i18n for internationalization.",
+        "Built responsive UI components and implemented design system for consistent user experience.",
+        "Created back office management system for product, branch, and stock management using Makerkit, Next.js, and shadcn.",
+        "Integrated Supabase database and Kakao Auth for CRUD operations and authentication system.",
+        "Implemented role-based login system for Branch and Headquarters with Korean/English localization.",
+        "Developed Telegram Mini Apps with TON Wallet Connect integration using monorepo architecture (Turbo, NestJS).",
+        "Built features including leaderboard, farming system, user invites, tasks, and scoring system."
+      ]
+    },
+    {
+      "company": "Ayola.co",
+      "role": "Front End Developer & UI/UX",
+      "startDate": "01/2024",
+      "endDate": "10/2024",
+      "technologies": ["React Native", "Expo", "Figma"],
+      "bullets": [
+        "Developed mobile applications using React Native Expo with custom fonts, themes, and reusable components.",
+        "Implemented localization features and integrated backend APIs and Google APIs.",
+        "Designed UI/UX for various app screens and provided design feedback in brainstorming sessions.",
+        "Created publishing assets for Play Store and App Store including icons, banners, and screenshots.",
+        "Redesigned main booking website to improve user experience and conversion rates.",
+        "Contributed to Instagram content creation and provided weekly progress updates via Notion."
+      ]
+    },
+    {
+      "company": "Bisatumbuh",
+      "role": "Front End Developer & UI/UX",
+      "startDate": "07/2023",
+      "endDate": "11/2023",
+      "technologies": ["Figma", "Framework7", "Capacitor JS", "Astro JS"],
+      "bullets": [
+        "Designed UI/UX for mobile apps and company profile website using Figma.",
+        "Developed mobile applications using Framework7 and Capacitor JS for cross-platform deployment.",
+        "Built company profile website using Astro JS and Framework7 with responsive design.",
+        "Integrated login system, OTP verification, and account management with backend services.",
+        "Managed app testing, building, and publishing on Play Store and App Store.",
+        "Created user guidance documentation and publishing assets for app stores.",
+        "Participated in sprint planning and review meetings with project managers and tech team."
+      ]
+    },
+    {
+      "company": "Inovata",
+      "role": "QA / Front End Engineer",
+      "startDate": "08/2022",
+      "endDate": "06/2023",
+      "technologies": ["Astro JS", "Katalon Studio"],
+      "bullets": [
+        "Built internal testing tools for QA teams to run simulations for stores, products, and transactions.",
+        "Developed customer dashboard frontend and integrated with backend services.",
+        "Created test case tracking website to monitor QA progress for MIRA Apps product.",
+        "Developed company profile website based on UI/UX team designs.",
+        "Implemented automation testing using Katalon Studio and wrote manual test cases.",
+        "Tested and documented bugs from user and PSC feedback for product improvement.",
+        "Collaborated with cross-functional teams including PM, marketing, UI/UX, and developers."
+      ]
+    },
+    {
+      "company": "Binari Digital",
+      "role": "Front End Developer",
+      "startDate": "07/2022",
+      "endDate": "01/2023",
+      "technologies": ["Figma", "XCode", "iOS"],
+      "bullets": [
+        "Maintained frontend of Daytrans CMS website and implemented new features.",
+        "Created export functionality for orders and transactions lists.",
+        "Designed prototypes and mobile UI for new features using Figma.",
+        "Managed iOS app builds in XCode and handled App Store publishing process.",
+        "Participated in daily standup meetings, client meetings, and sprint planning sessions."
+      ]
+    },
+    {
+      "company": "BJTech",
+      "role": "Front End Developer",
+      "startDate": "08/2019",
+      "endDate": "05/2022",
+      "technologies": ["WordPress", "SEO", "Python", "Vue.js", "Nuxt.js"],
+      "bullets": [
+        "Converted PSD designs into custom WordPress themes and developed responsive websites.",
+        "Implemented SEO best practices and A/B testing strategies to improve marketing effectiveness.",
+        "Developed web messaging chatbots and customer dashboard interfaces.",
+        "Created landing pages and company profile websites based on UI/UX designs.",
+        "Built Live Agent website frontend as part of company's product suite.",
+        "Conducted research and testing on Facebook and Instagram APIs for chatbot integration.",
+        "Collaborated with marketing, UI/UX, and tech teams to deliver digital campaigns.",
+        "Learned and implemented solutions using Python and Vue/Nuxt JS frameworks."
+      ]
+    },
+    {
+      "company": "Garena Indonesia",
+      "role": "Web Developer Intern",
+      "startDate": "11/2018",
+      "endDate": "01/2019",
+      "technologies": ["JavaScript", "HTML5", "CSS3"],
+      "bullets": [
+        "Developed user interfaces using modern JavaScript frameworks, HTML5, and CSS3.",
+        "Worked on company event websites and internal tools development.",
+        "Ensured cross-browser and cross-device compatibility through debugging and testing.",
+        "Collaborated with project managers and development team on website development projects."
+      ]
+    },
+    {
+      "company": "fLAND",
+      "role": "Founder & Programmer",
+      "startDate": "03/2018",
+      "endDate": "05/2023",
+      "technologies": ["React Native", "Xendit", "AWS"],
+      "bullets": [
+        "Created social networking application for role players achieving 10,000+ registered users.",
+        "Conducted product research and market analysis to identify target user needs.",
+        "Developed full-stack web platform and user dashboard for payment management.",
+        "Handled customer support, payment processing, and platform maintenance.",
+        "Rebuilt application using React Native for iOS and Android platforms.",
+        "Recruited and managed development team for product enhancement.",
+        "Integrated Xendit payment gateway and AWS mailer services.",
+        "Led brainstorming sessions and conducted team testing for quality assurance."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Full Stack Developer (HR Solutions & AI Debriefing)",
+      "company": "Wecruit",
+      "location": "Seoul, South Korea (Remote)",
+      "duration": "Project Based",
+      "bullets": [
+        "Developed professional HR solutions for employee performance management and AI-powered debriefing (https://debrief-solution.vercel.app).",
+        "Built the platform using Next.js 15, TypeScript, Tailwind CSS, and Supabase for backend services.",
+        "Implemented secure authentication including Role-Based Access Control (RBAC), registration, login, and password recovery flows.",
+        "Designed and developed CRUD modules with advanced data tables featuring pagination, search, and filtering capabilities.",
+        "Created custom PDF reporting system using jsPDF to generate company briefs and performance reports.",
+        "Integrated email notification system with custom templates using Nodemailer and Resend."
+      ]
+    },
+    {
+      "title": "Full Stack Developer (Crypto Portfolio & AI Advisor)",
+      "company": "APAD",
+      "location": "Seoul, South Korea (Remote)",
+      "duration": "Project Based",
+      "bullets": [
+        "Developed crypto portfolio and AI advisory web application using Next.js, TypeScript, Tailwind CSS, and serverless APIs (https://apad-webapp.vercel.app).",
+        "Implemented EVM wallet authentication with signature verification and session handoff.",
+        "Integrated smart contract reads via RPC for balances and portfolio synchronization.",
+        "Built Gemini AI chat integration with prompt routing and streaming responses.",
+        "Aggregated market, news, and price APIs with normalization and caching.",
+        "Implemented alerts, webhooks, rate limiting, and structured logging on Vercel."
+      ]
+    },
+    {
+      "title": "Full Stack Developer (Smart Contract dApp)",
+      "company": "Contract Aura",
+      "location": "Seoul, South Korea (Remote)",
+      "duration": "Project Based",
+      "bullets": [
+        "Built a smart contract dApp using Next.js and Tailwind CSS backed by a serverless Node.js backend on Vercel (https://contractaura.site).",
+        "Implemented REST APIs for contract generation, wallet actions, and terms-of-service submission.",
+        "Integrated BNB Chain using Ethers/Web3 with MetaMask wallet signature verification.",
+        "Automated smart contract deployment, ABI handling, and on-chain transaction tracking.",
+        "Added wallet connection flows (BNB, MetaMask) with secure message signing.",
+        "Built scheduled jobs for processing submissions and status updates.",
+        "Hardened backend with input validation, CORS, rate limiting, and structured logging."
+      ]
+    },
+    {
+      "title": "Full Stack Developer (Back Office System)",
+      "company": "Sodomall",
+      "location": "Seoul, South Korea (Remote)",
+      "duration": "Project Based",
+      "bullets": [
+        "Developed back office dashboard for product, branch, and stock management using Makerkit, Next.js, Tailwind CSS, and shadcn (https://sodomall.com).",
+        "Integrated Supabase and Kakao Auth for CRUD operations and login system.",
+        "Implemented role-based login for branch and headquarters users.",
+        "Implemented localization (Korean, English) and preview messaging features for blast messaging."
+      ]
+    },
+    {
+      "title": "Full Stack Developer (Telegram Mini Apps)",
+      "company": "",
+      "location": "Seoul, South Korea (Remote)",
+      "duration": "Project Based",
+      "bullets": [
+        "Set up monorepo for frontend and backend using Turborepo, NestJS, Next.js, and Supabase (https://yabba-dabba-doo.xyz).",
+        "Configured Telegram Bot and Mini Apps with TON Wallet Connect integration.",
+        "Developed Telegram Mini Apps frontend using Next.js and Tailwind CSS.",
+        "Integrated features including leaderboard, farming, user invites, task, and score systems."
+      ]
+    },
+    {
+      "title": "Full Stack Developer (AI Content Platform)",
+      "company": "Passiver AI",
+      "location": "Seoul, South Korea (Remote)",
+      "duration": "Project Based",
+      "bullets": [
+        "Developed NestJS API with modular architecture and clean domain layers (https://blog.passiver.ai).",
+        "Integrated Firebase Auth and Firestore for secure authentication, data access, and role-based permissions.",
+        "Built AI content platform with multi-model orchestration using OpenAI, prompt templates, and guardrails.",
+        "Implemented RAG pipeline for embedding generation, vector search, and source-grounded drafting.",
+        "Enabled streaming content generation with retries, usage tracking, and cost controls.",
+        "Automated content workflows with queue-based batching, post-processing, and schedulers.",
+        "Deployed on AWS using serverless APIs, S3/CloudFront, Redis caching, and CI/CD via GitHub Actions."
+      ]
+    },
+    {
+      "title": "Full Stack Developer (HRIS System)",
+      "company": "PLN",
+      "location": "Jakarta, Indonesia",
+      "duration": "Project Based",
+      "bullets": [
+        "Architected and developed a comprehensive HRIS for PLN, Indonesia's state-owned electricity corporation (https://daily.pln.co.id).",
+        "Developed and maintained modular REST APIs using Laravel to handle backend services and data flow.",
+        "Developed and maintained the frontend dashboard using Vue.js for administrative and employee interfaces.",
+        "Implemented HR modules including automated attendance tracking, absence management, and a payroll calculation engine with export capabilities.",
+        "Integrated authentication mechanisms featuring Role-Based Access Control (RBAC) and Single Sign-On (SSO).",
+        "Utilized Docker for containerized deployment across development, testing, and production environments."
+      ]
+    },
+    {
+      "title": "Full Stack Developer (Groceries App)",
+      "company": "Dapure",
+      "location": "Jakarta, Indonesia",
+      "duration": "Project Based",
+      "bullets": [
+        "Developed backend infrastructure for Dapure, a groceries delivery application (https://www.instagram.com/dapure_id/).",
+        "Built and maintained REST APIs using Laravel to serve the React Native mobile application.",
+        "Created an admin dashboard using Laravel Blade for product inventory, order processing, and delivery tracking.",
+        "Integrated location APIs for address management in the JABODETABEK area and used RajaOngkir API for automated delivery cost calculations.",
+        "Integrated Xendit payment gateway to handle secure transactions and multiple payment methods.",
+        "Implemented push notifications using OneSignal for order updates and promotions.",
+        "Utilized Docker for containerized deployment across environments."
+      ]
+    },
+    {
+      "title": "Full Stack Developer (Tour & Travel System)",
+      "company": "RMA Tour & Travel",
+      "location": "Jakarta, Indonesia",
+      "duration": "Project Based",
+      "bullets": [
+        "Developed backend services and admin tools for RMA Tour & Travel (https://rma-tour.com), a tour and travel organizer platform.",
+        "Built REST APIs and an admin dashboard for content management and booking workflows."
+      ]
+    }
+  ],
+  "skills": [
+    "Web Development",
+    "FrontEnd Development",
+    "Full Stack Development",
+    "UI/UX Design",
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "React Native",
+    "Vue.js",
+    "Nuxt.js",
+    "Next.js",
+    "Astro.js",
+    "Framework7",
+    "jQuery",
+    "Redux",
+    "Redux Toolkit",
+    "Figma",
+    "Python",
+    "SEO",
+    "MySQL",
+    "PHP",
+    "Git",
+    "Responsive Design",
+    "WordPress",
+    "Capacitor JS",
+    "Tailwind CSS",
+    "REST APIs",
+    "Supabase",
+    "Firebase",
+    "Stripe",
+    "i18next",
+    "Axios",
+    "State Management"
+  ]
+}

@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alifya Jiehan Anandika - Resume</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Calibri", "Arial", "Helvetica", "Times New Roman", sans-serif;
+        line-height: 1.6;
+        color: #000;
+        background: #fff;
+        padding: 40px;
+        max-width: 850px;
+        margin: 0 auto;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #000;
+        padding-bottom: 15px;
+      }
+
+      .header h1 {
+        font-size: 28px;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      .contact-info {
+        font-size: 11px;
+        margin-top: 8px;
+      }
+
+      .contact-info span {
+        margin: 0 8px;
+      }
+
+      .section {
+        margin-bottom: 20px;
+      }
+
+      .section-title {
+        font-size: 14px;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-bottom: 1px solid #000;
+        margin-bottom: 10px;
+        padding-bottom: 3px;
+      }
+
+      .job-header {
+        margin-bottom: 8px;
+      }
+
+      .job-title {
+        font-weight: bold;
+        font-size: 12px;
+      }
+
+      .company-info {
+        font-size: 11px;
+        margin-top: 2px;
+      }
+
+      .job-description {
+        margin-left: 0;
+        margin-bottom: 12px;
+      }
+
+      .job-description ul {
+        margin-left: 20px;
+        margin-top: 5px;
+      }
+
+      .job-description li {
+        font-size: 11px;
+        margin-bottom: 4px;
+        line-height: 1.5;
+      }
+
+      .summary-text {
+        font-size: 11px;
+        line-height: 1.6;
+        text-align: justify;
+      }
+
+      .education-item {
+        margin-bottom: 10px;
+      }
+
+      .degree {
+        font-weight: bold;
+        font-size: 12px;
+      }
+
+      .school {
+        font-size: 11px;
+      }
+
+      .skills-text {
+        font-size: 11px;
+        line-height: 1.6;
+      }
+
+      .languages-text {
+        font-size: 11px;
+      }
+
+      .download-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #0066cc;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+      }
+
+      .download-btn:hover {
+        background: #0052a3;
+      }
+
+      .download-docx-btn {
+        position: fixed;
+        top: 20px;
+        right: 160px;
+        background: #28a745;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+      }
+
+      .download-docx-btn:hover {
+        background: #218838;
+      }
+
+      @media print {
+        body {
+          padding: 20px;
+          margin: 0;
+        }
+
+        .download-btn,
+        .download-docx-btn {
+          display: none;
+        }
+
+        .section {
+          page-break-inside: auto;
+        }
+
+        .job-description {
+          page-break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="download-docx-btn" onclick="downloadDOCX()">
+      Download DOCX
+    </button>
+    <button class="download-btn" onclick="downloadPDF()">Download PDF</button>
+
+    <div class="header">
+      <h1>Alifya Jiehan Anandika</h1>
+      <div class="contact-info">
+        jiehanandika@gmail.com <span>|</span> +62 897 6203 842
+        <span>|</span> Jakarta, Indonesia
+      </div>
+      <div class="contact-info" style="margin-top: 5px">
+        Portfolio: https://jiaan.vercel.app <span>|</span> Projects:
+        https://drive.google.com/drive/folders/1EJrGrpbsj2PEfhaJssq4K-L7ljqx4JMD
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Summary</h2>
+      <p class="summary-text">
+        As a seasoned Frontend Developer with 5 years of experience, I
+        specialize in curating engaging user interfaces and exceptional user
+        experiences. My proficiency extends to UI/UX design, with Figma being my
+        go-to tool for crafting interfaces that seamlessly blend form and
+        function. I see myself as more than just a coder.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Experience</h2>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">Front End Developer</h3>
+          <div class="company-info">
+            Diquest Inc. • Seoul, South Korea (Remote) • 05/2025 - Present
+          </div>
+        </div>
+        <ul>
+          <li>
+            Developed (https://genwave.ploonet.com) AI content generation
+            platform frontend using Next.js 14, React 18, Redux Toolkit, and
+            Tailwind CSS for image, video, music, and character creation
+            features.
+          </li>
+          <li>
+            Sliced Figma designs and built responsive UI components for AI chat
+            assistant with real-time streaming using Server-Sent Events (SSE).
+          </li>
+          <li>
+            Implemented drag-and-drop video timeline editor using dnd-kit
+            library and integrated backend APIs for video generation and TTS
+            features.
+          </li>
+          <li>
+            Integrated Firebase authentication, Stripe payment gateway with
+            webhook handling, and real-time notification system using SSE.
+          </li>
+          <li>
+            Created 170+ reusable UI components including modals, carousels,
+            bottom sheets, and custom dropdowns for consistent design system.
+          </li>
+          <li>
+            Implemented internationalization using i18next and next-i18next for
+            Korean and English language support with dynamic switching.
+          </li>
+          <li>
+            Built state management using Redux Toolkit with persistent storage
+            and integrated backend APIs for user data, credits, and settings.
+          </li>
+          <li>
+            Developed media handling features including image uploads, base64
+            processing, video player controls, and streaming file downloads.
+          </li>
+          <li>
+            Implemented social features including user profiles, infinite scroll
+            gallery, like/comment system, and content sharing functionality.
+          </li>
+          <li>
+            Integrated backend APIs using Axios with interceptors for
+            authentication, error handling, and request/response
+            transformations.
+          </li>
+        </ul>
+      </div>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">Front End Developer</h3>
+          <div class="company-info">
+            Hyperhire • Seoul, South Korea (Remote) • 11/2024 - 04/2025
+          </div>
+        </div>
+        <ul>
+          <li>
+            Developed AI video/music/image generator platform using Next.js,
+            Tailwind, and i18n for internationalization.
+          </li>
+          <li>
+            Built responsive UI components and implemented design system for
+            consistent user experience.
+          </li>
+          <li>
+            Created back office management system for product, branch, and stock
+            management using Makerkit, Next.js, and shadcn.
+          </li>
+          <li>
+            Integrated Supabase database and Kakao Auth for CRUD operations and
+            authentication system.
+          </li>
+          <li>
+            Implemented role-based login system for Branch and Headquarters with
+            Korean/English localization.
+          </li>
+          <li>
+            Developed Telegram Mini Apps with TON Wallet Connect integration
+            using monorepo architecture (Turbo, NestJS).
+          </li>
+          <li>
+            Built features including leaderboard, farming system, user invites,
+            tasks, and scoring system.
+          </li>
+        </ul>
+      </div>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">Front End Developer &amp; UI/UX</h3>
+          <div class="company-info">
+            Ayola.co • Jakarta, Indonesia • 01/2024 - 10/2024
+          </div>
+        </div>
+        <ul>
+          <li>
+            Developed mobile applications using React Native Expo with custom
+            fonts, themes, and reusable components.
+          </li>
+          <li>
+            Implemented localization features and integrated backend APIs and
+            Google APIs.
+          </li>
+          <li>
+            Designed UI/UX for various app screens and provided design feedback
+            in brainstorming sessions.
+          </li>
+          <li>
+            Created publishing assets for Play Store and App Store including
+            icons, banners, and screenshots.
+          </li>
+          <li>
+            Redesigned main booking website to improve user experience and
+            conversion rates.
+          </li>
+          <li>
+            Contributed to Instagram content creation and provided weekly
+            progress updates via Notion.
+          </li>
+        </ul>
+      </div>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">Front End Developer &amp; UI/UX</h3>
+          <div class="company-info">
+            Bisatumbuh • Jakarta, Indonesia • 07/2023 - 11/2023
+          </div>
+        </div>
+        <ul>
+          <li>
+            Designed UI/UX for mobile apps and company profile website using
+            Figma.
+          </li>
+          <li>
+            Developed mobile applications using Framework7 and Capacitor JS for
+            cross-platform deployment.
+          </li>
+          <li>
+            Built company profile website using Astro JS and Framework7 with
+            responsive design.
+          </li>
+          <li>
+            Integrated login system, OTP verification, and account management
+            with backend services.
+          </li>
+          <li>
+            Managed app testing, building, and publishing on Play Store and App
+            Store.
+          </li>
+          <li>
+            Created user guidance documentation and publishing assets for app
+            stores.
+          </li>
+          <li>
+            Participated in sprint planning and review meetings with project
+            managers and tech team.
+          </li>
+        </ul>
+      </div>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">QA / Front End Engineer</h3>
+          <div class="company-info">
+            Inovata • Jakarta, Indonesia • 08/2022 - 06/2023
+          </div>
+        </div>
+        <ul>
+          <li>
+            Built internal testing tools for QA teams to run simulations for
+            stores, products, and transactions.
+          </li>
+          <li>
+            Developed customer dashboard frontend and integrated with backend
+            services.
+          </li>
+          <li>
+            Created test case tracking website to monitor QA progress for MIRA
+            Apps product.
+          </li>
+          <li>
+            Developed company profile website based on UI/UX team designs.
+          </li>
+          <li>
+            Implemented automation testing using Katalon Studio and wrote manual
+            test cases.
+          </li>
+          <li>
+            Tested and documented bugs from user and PSC feedback for product
+            improvement.
+          </li>
+          <li>
+            Collaborated with cross-functional teams including PM, marketing,
+            UI/UX, and developers.
+          </li>
+        </ul>
+      </div>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">Front End Developer (Part-Time Remote)</h3>
+          <div class="company-info">
+            Binari Digital • Jakarta, Indonesia • 07/2022 - 01/2023
+          </div>
+        </div>
+        <ul>
+          <li>
+            Maintained frontend of Daytrans CMS website and implemented new
+            features.
+          </li>
+          <li>
+            Created export functionality for orders and transactions lists.
+          </li>
+          <li>
+            Designed prototypes and mobile UI for new features using Figma.
+          </li>
+          <li>
+            Managed iOS app builds in XCode and handled App Store publishing
+            process.
+          </li>
+          <li>
+            Participated in daily standup meetings, client meetings, and sprint
+            planning sessions.
+          </li>
+        </ul>
+      </div>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">Front End Developer</h3>
+          <div class="company-info">
+            BJTech • Jakarta, Indonesia • 08/2019 - 05/2022
+          </div>
+        </div>
+        <ul>
+          <li>
+            Converted PSD designs into custom WordPress themes and developed
+            responsive websites.
+          </li>
+          <li>
+            Implemented SEO best practices and A/B testing strategies to improve
+            marketing effectiveness.
+          </li>
+          <li>
+            Developed web messaging chatbots and customer dashboard interfaces.
+          </li>
+          <li>
+            Created landing pages and company profile websites based on UI/UX
+            designs.
+          </li>
+          <li>
+            Built Live Agent website frontend as part of company's product
+            suite.
+          </li>
+          <li>
+            Conducted research and testing on Facebook and Instagram APIs for
+            chatbot integration.
+          </li>
+          <li>
+            Collaborated with marketing, UI/UX, and tech teams to deliver
+            digital campaigns.
+          </li>
+          <li>
+            Learned and implemented solutions using Python and Vue/Nuxt JS
+            frameworks.
+          </li>
+        </ul>
+      </div>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">Web Developer Intern</h3>
+          <div class="company-info">
+            Garena Indonesia • Jakarta, Indonesia • 11/2018 - 01/2019
+          </div>
+        </div>
+        <ul>
+          <li>
+            Developed user interfaces using modern JavaScript frameworks, HTML5,
+            and CSS3.
+          </li>
+          <li>
+            Worked on company event websites and internal tools development.
+          </li>
+          <li>
+            Ensured cross-browser and cross-device compatibility through
+            debugging and testing.
+          </li>
+          <li>
+            Collaborated with project managers and development team on website
+            development projects.
+          </li>
+        </ul>
+      </div>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">Founder &amp; Programmer</h3>
+          <div class="company-info">
+            fLAND • Jakarta, Indonesia • 03/2018 - 05/2023
+          </div>
+        </div>
+        <ul>
+          <li>
+            Created social networking application for role players achieving
+            10,000+ registered users.
+          </li>
+          <li>
+            Conducted product research and market analysis to identify target
+            user needs.
+          </li>
+          <li>
+            Developed full-stack web platform and user dashboard for payment
+            management.
+          </li>
+          <li>
+            Handled customer support, payment processing, and platform
+            maintenance.
+          </li>
+          <li>
+            Rebuilt application using React Native for iOS and Android
+            platforms.
+          </li>
+          <li>
+            Recruited and managed development team for product enhancement.
+          </li>
+          <li>Integrated Xendit payment gateway and AWS mailer services.</li>
+          <li>
+            Led brainstorming sessions and conducted team testing for quality
+            assurance.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Project Experience</h2>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">
+            Full Stack Developer (HR Solutions &amp; AI Debriefing)
+          </h3>
+          <div class="company-info">
+            Wecruit • Seoul, South Korea (Remote) • Project Based
+          </div>
+        </div>
+        <ul>
+          <li>
+            Developed professional HR solutions for employee performance
+            management and AI-powered debriefing
+            (https://debrief-solution.vercel.app).
+          </li>
+          <li>
+            Built the platform using Next.js 15, TypeScript, Tailwind CSS, and
+            Supabase for backend services.
+          </li>
+          <li>
+            Implemented secure authentication including Role-Based Access
+            Control (RBAC), registration, login, and password recovery flows.
+          </li>
+          <li>
+            Designed and developed CRUD modules with advanced data tables
+            featuring pagination, search, and filtering capabilities.
+          </li>
+          <li>
+            Created custom PDF reporting system using jsPDF to generate company
+            briefs and performance reports.
+          </li>
+          <li>
+            Integrated email notification system with custom templates using
+            Nodemailer and Resend.
+          </li>
+        </ul>
+      </div>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">
+            Full Stack Developer (Crypto Portfolio &amp; AI Advisor)
+          </h3>
+          <div class="company-info">
+            APAD • Seoul, South Korea (Remote) • Project Based
+          </div>
+        </div>
+        <ul>
+          <li>
+            Developed crypto portfolio and AI advisory web application using
+            Next.js, TypeScript, Tailwind CSS, and serverless APIs
+            (https://apad-webapp.vercel.app).
+          </li>
+          <li>
+            Implemented EVM wallet authentication with signature verification
+            and session handoff.
+          </li>
+          <li>
+            Integrated smart contract reads via RPC for balances and portfolio
+            synchronization.
+          </li>
+          <li>
+            Built Gemini AI chat integration with prompt routing and streaming
+            responses.
+          </li>
+          <li>
+            Aggregated market, news, and price APIs with normalization and
+            caching.
+          </li>
+          <li>
+            Implemented alerts, webhooks, rate limiting, and structured logging
+            on Vercel.
+          </li>
+        </ul>
+      </div>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">Full Stack Developer (Smart Contract dApp)</h3>
+          <div class="company-info">
+            Contract Aura • Seoul, South Korea (Remote) • Project Based
+          </div>
+        </div>
+        <ul>
+          <li>
+            Built a smart contract dApp using Next.js and Tailwind CSS backed by
+            a serverless Node.js backend on Vercel (https://contractaura.site).
+          </li>
+          <li>
+            Implemented REST APIs for contract generation, wallet actions, and
+            terms-of-service submission.
+          </li>
+          <li>
+            Integrated BNB Chain using Ethers/Web3 with MetaMask wallet
+            signature verification.
+          </li>
+          <li>
+            Automated smart contract deployment, ABI handling, and on-chain
+            transaction tracking.
+          </li>
+          <li>
+            Added wallet connection flows (BNB, MetaMask) with secure message
+            signing.
+          </li>
+          <li>
+            Built scheduled jobs for processing submissions and status updates.
+          </li>
+          <li>
+            Hardened backend with input validation, CORS, rate limiting, and
+            structured logging.
+          </li>
+        </ul>
+      </div>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">Full Stack Developer (Back Office System)</h3>
+          <div class="company-info">
+            Sodomall • Seoul, South Korea (Remote) • Project Based
+          </div>
+        </div>
+        <ul>
+          <li>
+            Developed back office dashboard for product, branch, and stock
+            management using Makerkit, Next.js, Tailwind CSS, and shadcn
+            (https://sodomall.com).
+          </li>
+          <li>
+            Integrated Supabase and Kakao Auth for CRUD operations and login
+            system.
+          </li>
+          <li>
+            Implemented role-based login for branch and headquarters users.
+          </li>
+          <li>
+            Implemented localization (Korean, English) and preview messaging
+            features for blast messaging.
+          </li>
+        </ul>
+      </div>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">Full Stack Developer (Telegram Mini Apps)</h3>
+          <div class="company-info">
+            Yabba Dabba Doo • Seoul, South Korea (Remote) • Project Based
+          </div>
+        </div>
+        <ul>
+          <li>
+            Set up monorepo for frontend and backend using Turborepo, NestJS,
+            Next.js, and Supabase (https://yabba-dabba-doo.xyz).
+          </li>
+          <li>
+            Configured Telegram Bot and Mini Apps with TON Wallet Connect
+            integration.
+          </li>
+          <li>
+            Developed Telegram Mini Apps frontend using Next.js and Tailwind
+            CSS.
+          </li>
+          <li>
+            Integrated features including leaderboard, farming, user invites,
+            task, and score systems.
+          </li>
+        </ul>
+      </div>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">Full Stack Developer (AI Content Platform)</h3>
+          <div class="company-info">
+            Passiver AI • Seoul, South Korea (Remote) • Project Based
+          </div>
+        </div>
+        <ul>
+          <li>
+            Developed NestJS API with modular architecture and clean domain
+            layers (https://blog.passiver.ai).
+          </li>
+          <li>
+            Integrated Firebase Auth and Firestore for secure authentication,
+            data access, and role-based permissions.
+          </li>
+          <li>
+            Built AI content platform with multi-model orchestration using
+            OpenAI, prompt templates, and guardrails.
+          </li>
+          <li>
+            Implemented RAG pipeline for embedding generation, vector search,
+            and source-grounded drafting.
+          </li>
+          <li>
+            Enabled streaming content generation with retries, usage tracking,
+            and cost controls.
+          </li>
+          <li>
+            Automated content workflows with queue-based batching,
+            post-processing, and schedulers.
+          </li>
+          <li>
+            Deployed on AWS using serverless APIs, S3/CloudFront, Redis caching,
+            and CI/CD via GitHub Actions.
+          </li>
+        </ul>
+      </div>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">Full Stack Developer (HRIS System)</h3>
+          <div class="company-info">
+            PLN (State-owned Electricity Company) • Jakarta, Indonesia • Project
+            Based
+          </div>
+        </div>
+        <ul>
+          <li>
+            Architected and developed a comprehensive HRIS for PLN, Indonesia's
+            state-owned electricity corporation
+            (https://daily.pln.co.id).
+          </li>
+          <li>
+            Developed and maintained modular REST APIs using Laravel to handle
+            backend services and data flow.
+          </li>
+          <li>
+            Developed and maintained the frontend dashboard using Vue.js for
+            administrative and employee interfaces.
+          </li>
+          <li>
+            Implemented HR modules including automated attendance tracking,
+            absence management, and a payroll calculation engine with export
+            capabilities.
+          </li>
+          <li>
+            Integrated authentication mechanisms featuring Role-Based Access
+            Control (RBAC) and Single Sign-On (SSO).
+          </li>
+          <li>
+            Utilized Docker for containerized deployment across development,
+            testing, and production environments.
+          </li>
+        </ul>
+      </div>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">Full Stack Developer (Groceries App)</h3>
+          <div class="company-info">
+            Dapure • Jakarta, Indonesia • Project Based
+          </div>
+        </div>
+        <ul>
+          <li>
+            Developed backend infrastructure for Dapure, a groceries delivery
+            application (https://www.instagram.com/dapure_id/).
+          </li>
+          <li>
+            Built and maintained REST APIs using Laravel to serve the React
+            Native mobile application.
+          </li>
+          <li>
+            Created an admin dashboard using Laravel Blade for product
+            inventory, order processing, and delivery tracking.
+          </li>
+          <li>
+            Integrated location APIs for address management in the JABODETABEK
+            area and used RajaOngkir API for automated delivery cost
+            calculations.
+          </li>
+          <li>
+            Integrated Xendit payment gateway to handle secure transactions and
+            multiple payment methods.
+          </li>
+          <li>
+            Implemented push notifications using OneSignal for order updates and
+            promotions.
+          </li>
+          <li>
+            Utilized Docker for containerized deployment across environments.
+          </li>
+        </ul>
+      </div>
+
+      <div class="job-description">
+        <div class="job-header">
+          <h3 class="job-title">Full Stack Developer (Tour &amp; Travel System)</h3>
+          <div class="company-info">
+            RMA Tour &amp; Travel • Jakarta, Indonesia • Project Based
+          </div>
+        </div>
+        <ul>
+          <li>
+            Developed backend services and admin tools for RMA Tour &amp; Travel
+            (https://rma-tour.com), a tour and travel organizer platform.
+          </li>
+          <li>
+            Built REST APIs and an admin dashboard for content management and
+            booking workflows.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Education</h2>
+
+      <div class="education-item">
+        <div class="degree">Computer Science</div>
+        <div class="school">Perbanas Institute • Jakarta, Indonesia</div>
+      </div>
+
+      <div class="education-item">
+        <div class="degree">Software Engineering</div>
+        <div class="school">
+          Vocational High School Prestasi Prima • Jakarta, Indonesia
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Skills</h2>
+      <p class="skills-text">
+        Web Development, FrontEnd Development, Full Stack Development, UI/UX Design, HTML5, CSS3,
+        JavaScript, TypeScript, React, React Native, Vue.js, Nuxt.js, Next.js,
+        Astro.js, Framework7, jQuery, Redux, Redux Toolkit, Figma, Python, SEO,
+        MySQL, PHP, Git, Responsive Design, WordPress, Capacitor JS, Tailwind
+        CSS, REST APIs, Supabase, Firebase, Stripe, i18next, Axios, State
+        Management
+      </p>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Languages</h2>
+      <p class="languages-text">Indonesian (Native), English (Professional)</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script>
+      function downloadPDF() {
+        const pdfButton = document.querySelector(".download-btn");
+        const docxButton = document.querySelector(".download-docx-btn");
+        pdfButton.style.display = "none";
+        docxButton.style.display = "none";
+
+        window.print();
+
+        pdfButton.style.display = "block";
+        docxButton.style.display = "block";
+      }
+
+      function downloadDOCX() {
+        // Create a clean HTML version for Word
+        const header = `
+ALIFYA JIEHAN ANANDIKA
+jiehanandika@gmail.com | +62 897 6203 842 | Jakarta, Indonesia
+Portfolio: https://jiaan.vercel.app | Projects: https://drive.google.com/drive/folders/1EJrGrpbsj2PEfhaJssq4K-L7ljqx4JMD
+
+SUMMARY
+As a seasoned Frontend Developer with 5 years of experience, I specialize in curating engaging user
+interfaces and exceptional user experiences. My proficiency extends to UI/UX design, with Figma
+being my go-to tool for crafting interfaces that seamlessly blend form and function. I see myself as
+more than just a coder.
+
+WORK EXPERIENCE
+
+Front End Developer
+Diquest Inc. • Seoul, South Korea (Remote) • 05/2025 - Present
+• Developed (https://genwave.ploonet.com/) AI content generation platform frontend using Next.js 14, React 18, Redux Toolkit, and Tailwind CSS for image, video, music, and character creation features.
+• Sliced Figma designs and built responsive UI components for AI chat assistant with real-time streaming using Server-Sent Events (SSE).
+• Implemented drag-and-drop video timeline editor using dnd-kit library and integrated backend APIs for video generation and TTS features.
+• Integrated Firebase authentication, Stripe payment gateway with webhook handling, and real-time notification system using SSE.
+• Created 170+ reusable UI components including modals, carousels, bottom sheets, and custom dropdowns for consistent design system.
+• Implemented internationalization using i18next and next-i18next for Korean and English language support with dynamic switching.
+• Built state management using Redux Toolkit with persistent storage and integrated backend APIs for user data, credits, and settings.
+• Developed media handling features including image uploads, base64 processing, video player controls, and streaming file downloads.
+• Implemented social features including user profiles, infinite scroll gallery, like/comment system, and content sharing functionality.
+• Integrated backend APIs using Axios with interceptors for authentication, error handling, and request/response transformations.
+
+Front End Developer
+Hyperhire • Seoul, South Korea (Remote) • 11/2024 - 04/2025
+• Developed AI video/music/image generator platform using Next.js, Tailwind, and i18n for internationalization.
+• Built responsive UI components and implemented design system for consistent user experience.
+• Created back office management system for product, branch, and stock management using Makerkit, Next.js, and shadcn.
+• Integrated Supabase database and Kakao Auth for CRUD operations and authentication system.
+• Implemented role-based login system for Branch and Headquarters with Korean/English localization.
+• Developed Telegram Mini Apps with TON Wallet Connect integration using monorepo architecture (Turbo, NestJS).
+• Built features including leaderboard, farming system, user invites, tasks, and scoring system.
+
+Front End Developer & UI/UX
+Ayola.co • Jakarta, Indonesia • 01/2024 - 10/2024
+• Developed mobile applications using React Native Expo with custom fonts, themes, and reusable components.
+• Implemented localization features and integrated backend APIs and Google APIs.
+• Designed UI/UX for various app screens and provided design feedback in brainstorming sessions.
+• Created publishing assets for Play Store and App Store including icons, banners, and screenshots.
+• Redesigned main booking website to improve user experience and conversion rates.
+• Contributed to Instagram content creation and provided weekly progress updates via Notion.
+
+Front End Developer & UI/UX
+Bisatumbuh • Jakarta, Indonesia • 07/2023 - 11/2023
+• Designed UI/UX for mobile apps and company profile website using Figma.
+• Developed mobile applications using Framework7 and Capacitor JS for cross-platform deployment.
+• Built company profile website using Astro JS and Framework7 with responsive design.
+• Integrated login system, OTP verification, and account management with backend services.
+• Managed app testing, building, and publishing on Play Store and App Store.
+• Created user guidance documentation and publishing assets for app stores.
+• Participated in sprint planning and review meetings with project managers and tech team.
+
+QA / Front End Engineer
+Inovata • Jakarta, Indonesia • 08/2022 - 06/2023
+• Built internal testing tools for QA teams to run simulations for stores, products, and transactions.
+• Developed customer dashboard frontend and integrated with backend services.
+• Created test case tracking website to monitor QA progress for MIRA Apps product.
+• Developed company profile website based on UI/UX team designs.
+• Implemented automation testing using Katalon Studio and wrote manual test cases.
+• Tested and documented bugs from user and PSC feedback for product improvement.
+• Collaborated with cross-functional teams including PM, marketing, UI/UX, and developers.
+
+Front End Developer (Part-Time Remote)
+Binari Digital • Jakarta, Indonesia • 07/2022 - 01/2023
+• Maintained frontend of Daytrans CMS website and implemented new features.
+• Created export functionality for orders and transactions lists.
+• Designed prototypes and mobile UI for new features using Figma.
+• Managed iOS app builds in XCode and handled App Store publishing process.
+• Participated in daily standup meetings, client meetings, and sprint planning sessions.
+
+Front End Developer
+BJTech • Jakarta, Indonesia • 08/2019 - 05/2022
+• Converted PSD designs into custom WordPress themes and developed responsive websites.
+• Implemented SEO best practices and A/B testing strategies to improve marketing effectiveness.
+• Developed web messaging chatbots and customer dashboard interfaces.
+• Created landing pages and company profile websites based on UI/UX designs.
+• Built Live Agent website frontend as part of company's product suite.
+• Conducted research and testing on Facebook and Instagram APIs for chatbot integration.
+• Collaborated with marketing, UI/UX, and tech teams to deliver digital campaigns.
+• Learned and implemented solutions using Python and Vue/Nuxt JS frameworks.
+
+Web Developer Intern
+Garena Indonesia • Jakarta, Indonesia • 11/2018 - 01/2019
+• Developed user interfaces using modern JavaScript frameworks, HTML5, and CSS3.
+• Worked on company event websites and internal tools development.
+• Ensured cross-browser and cross-device compatibility through debugging and testing.
+• Collaborated with project managers and development team on website development projects.
+
+Founder & Programmer
+fLAND • Jakarta, Indonesia • 03/2018 - 05/2023
+• Created social networking application for role players achieving 10,000+ registered users.
+• Conducted product research and market analysis to identify target user needs.
+• Developed full-stack web platform and user dashboard for payment management.
+• Handled customer support, payment processing, and platform maintenance.
+• Rebuilt application using React Native for iOS and Android platforms.
+• Recruited and managed development team for product enhancement.
+• Integrated Xendit payment gateway and AWS mailer services.
+• Led brainstorming sessions and conducted team testing for quality assurance.
+
+EDUCATION
+
+Computer Science
+Perbanas Institute • Jakarta, Indonesia
+
+Software Engineering
+Vocational High School Prestasi Prima • Jakarta, Indonesia
+
+SKILLS
+
+Web Development, Frontend Development, Full Stack Development UI/UX Design, HTML5, CSS3, JavaScript, TypeScript, React, React Native, Vue.js, Nuxt.js, Next.js, Astro.js, Framework7, jQuery, Redux, Redux Toolkit, Figma, Python, SEO, MySQL, PHP, Git, Responsive Design, WordPress, Capacitor JS, Tailwind CSS, REST APIs, Supabase, Firebase, i18next, Axios, State Management
+
+LANGUAGES
+
+Indonesian (Native), English (Professional)
+`;
+
+        const textContent = header;
+
+        function escapeXml(unsafe) {
+          return unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&apos;");
+        }
+
+        const paragraphs = textContent
+          .trim()
+          .split("\n")
+          .map((line) => {
+            const safeLine = escapeXml(line);
+            return `<w:p><w:r><w:t xml:space="preserve">${safeLine}</w:t></w:r></w:p>`;
+          })
+          .join("");
+
+        const contentTypes =
+          `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
+          `<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">` +
+          `<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>` +
+          `<Default Extension="xml" ContentType="application/xml"/>` +
+          `<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>` +
+          `<Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>` +
+          `<Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/>` +
+          `</Types>`;
+
+        const rels =
+          `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
+          `<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">` +
+          `<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>` +
+          `</Relationships>`;
+
+        const docRels =
+          `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
+          `<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"></Relationships>`;
+
+        const coreProps =
+          `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
+          `<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" ` +
+          `xmlns:dc="http://purl.org/dc/elements/1.1/" ` +
+          `xmlns:dcterms="http://purl.org/dc/terms/" ` +
+          `xmlns:dcmitype="http://purl.org/dc/dcmitype/" ` +
+          `xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">` +
+          `<dc:title>Alifya Jiehan Anandika Resume</dc:title>` +
+          `<dc:creator>Alifya Jiehan Anandika</dc:creator>` +
+          `<cp:lastModifiedBy>Alifya Jiehan Anandika</cp:lastModifiedBy>` +
+          `</cp:coreProperties>`;
+
+        const appProps =
+          `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
+          `<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" ` +
+          `xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">` +
+          `<Application>Microsoft Office Word</Application>` +
+          `</Properties>`;
+
+        const documentXml =
+          `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
+          `<w:document xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" ` +
+          `xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" ` +
+          `xmlns:o="urn:schemas-microsoft-com:office:office" ` +
+          `xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" ` +
+          `xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" ` +
+          `xmlns:v="urn:schemas-microsoft-com:vml" ` +
+          `xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" ` +
+          `xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" ` +
+          `xmlns:w10="urn:schemas-microsoft-com:office:word" ` +
+          `xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" ` +
+          `xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" ` +
+          `xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" ` +
+          `xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" ` +
+          `xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" ` +
+          `xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" ` +
+          `mc:Ignorable="w14 wp14">` +
+          `<w:body>` +
+          paragraphs +
+          `<w:sectPr>` +
+          `<w:pgSz w:w="12240" w:h="15840"/>` +
+          `<w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="720" w:footer="720" w:gutter="0"/>` +
+          `</w:sectPr>` +
+          `</w:body>` +
+          `</w:document>`;
+
+        const zip = new JSZip();
+        zip.file("[Content_Types].xml", contentTypes);
+        zip.folder("_rels").file(".rels", rels);
+        const wordFolder = zip.folder("word");
+        wordFolder.file("document.xml", documentXml);
+        wordFolder.folder("_rels").file("document.xml.rels", docRels);
+        const docPropsFolder = zip.folder("docProps");
+        docPropsFolder.file("core.xml", coreProps);
+        docPropsFolder.file("app.xml", appProps);
+
+        zip.generateAsync({ type: "blob" }).then((blob) => {
+          saveAs(blob, "Alifya_Jiehan_Anandika_Resume.docx");
+        });
+      }
+    </script>
+  </body>
+</html>
