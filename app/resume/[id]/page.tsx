@@ -21,13 +21,17 @@ export default function ResumePreviewPage() {
   const [error, setError] = useState<string | null>(null);
   const [isRegenerating, setIsRegenerating] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const [viewMode, setViewMode] = useState<"preview" | "edit-form" | "edit-json" | "email" | "Question">("preview");
+  const [viewMode, setViewMode] = useState<
+    "preview" | "edit-form" | "edit-json" | "email" | "Question"
+  >("preview");
   const [editedJSON, setEditedJSON] = useState<string>("");
   const [editedForm, setEditedForm] = useState<ResumeJSON | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [isGeneratingEmail, setIsGeneratingEmail] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
-  const [isGeneratingQuestionId, setIsGeneratingQuestionId] = useState<string | null>(null);
+  const [isGeneratingQuestionId, setIsGeneratingQuestionId] = useState<
+    string | null
+  >(null);
   const shouldPrintRef = useRef(false);
 
   useEffect(() => {
@@ -43,7 +47,9 @@ export default function ResumePreviewPage() {
           resume: data.resume.generated_resume_json,
         });
         setEditedForm(data.resume.generated_resume_json);
-        setEditedJSON(JSON.stringify(data.resume.generated_resume_json, null, 2));
+        setEditedJSON(
+          JSON.stringify(data.resume.generated_resume_json, null, 2),
+        );
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred");
       } finally {
@@ -149,12 +155,23 @@ export default function ResumePreviewPage() {
   const handleSaveJSON = () => {
     try {
       const parsed = JSON.parse(editedJSON);
-      if (!parsed.summary || !Array.isArray(parsed.experiences) || !Array.isArray(parsed.projects) || !Array.isArray(parsed.skills)) {
-        throw new Error("Invalid resume format. JSON must have summary, experiences, projects, and skills fields.");
+      if (
+        !parsed.summary ||
+        !Array.isArray(parsed.experiences) ||
+        !Array.isArray(parsed.projects) ||
+        !Array.isArray(parsed.skills)
+      ) {
+        throw new Error(
+          "Invalid resume format. JSON must have summary, experiences, projects, and skills fields.",
+        );
       }
       handleSave(parsed);
     } catch (err) {
-      alert(err instanceof Error ? err.message : "Invalid JSON syntax. Please correct it before saving.");
+      alert(
+        err instanceof Error
+          ? err.message
+          : "Invalid JSON syntax. Please correct it before saving.",
+      );
     }
   };
 
@@ -165,27 +182,31 @@ export default function ResumePreviewPage() {
   };
 
   const handleSummaryChange = (text: string) => {
-    setEditedForm(prev => {
+    setEditedForm((prev) => {
       if (!prev) return prev;
       return { ...prev, summary: text };
     });
   };
 
   const handleSkillsChange = (text: string) => {
-    const skillsArray = text.split(",").map(s => s.trim());
-    setEditedForm(prev => {
+    const skillsArray = text.split(",").map((s) => s.trim());
+    setEditedForm((prev) => {
       if (!prev) return prev;
       return { ...prev, skills: skillsArray };
     });
   };
 
-  const handleExperienceFieldChange = (idx: number, field: keyof Experience, value: string) => {
-    setEditedForm(prev => {
+  const handleExperienceFieldChange = (
+    idx: number,
+    field: keyof Experience,
+    value: string,
+  ) => {
+    setEditedForm((prev) => {
       if (!prev) return prev;
       const updatedExperiences = [...prev.experiences];
       updatedExperiences[idx] = {
         ...updatedExperiences[idx],
-        [field]: value
+        [field]: value,
       } as Experience;
       return { ...prev, experiences: updatedExperiences };
     });
@@ -193,24 +214,28 @@ export default function ResumePreviewPage() {
 
   const handleExperienceBulletChange = (idx: number, text: string) => {
     const updatedBullets = text.split("\n");
-    setEditedForm(prev => {
+    setEditedForm((prev) => {
       if (!prev) return prev;
       const updatedExperiences = [...prev.experiences];
       updatedExperiences[idx] = {
         ...updatedExperiences[idx],
-        bullets: updatedBullets
+        bullets: updatedBullets,
       };
       return { ...prev, experiences: updatedExperiences };
     });
   };
 
-  const handleProjectFieldChange = (idx: number, field: keyof Project, value: string) => {
-    setEditedForm(prev => {
+  const handleProjectFieldChange = (
+    idx: number,
+    field: keyof Project,
+    value: string,
+  ) => {
+    setEditedForm((prev) => {
       if (!prev) return prev;
       const updatedProjects = [...prev.projects];
       updatedProjects[idx] = {
         ...updatedProjects[idx],
-        [field]: value
+        [field]: value,
       } as Project;
       return { ...prev, projects: updatedProjects };
     });
@@ -218,12 +243,12 @@ export default function ResumePreviewPage() {
 
   const handleProjectBulletChange = (idx: number, text: string) => {
     const updatedBullets = text.split("\n");
-    setEditedForm(prev => {
+    setEditedForm((prev) => {
       if (!prev) return prev;
       const updatedProjects = [...prev.projects];
       updatedProjects[idx] = {
         ...updatedProjects[idx],
-        bullets: updatedBullets
+        bullets: updatedBullets,
       };
       return { ...prev, projects: updatedProjects };
     });
@@ -246,7 +271,7 @@ export default function ResumePreviewPage() {
       }
 
       const data = await response.json();
-      setResumeData(prev => {
+      setResumeData((prev) => {
         if (!prev) return prev;
         const updatedResume = {
           ...prev.resume,
@@ -266,26 +291,31 @@ export default function ResumePreviewPage() {
 
   const handleCopyEmail = () => {
     if (!resumeData?.resume.generated_email) return;
-    navigator.clipboard.writeText(resumeData.resume.generated_email).then(() => {
-      setCopySuccess(true);
-      setTimeout(() => setCopySuccess(false), 2000);
-    });
+    navigator.clipboard
+      .writeText(resumeData.resume.generated_email)
+      .then(() => {
+        setCopySuccess(true);
+        setTimeout(() => setCopySuccess(false), 2000);
+      });
   };
 
   const handleAddQuestion = async () => {
     if (!resumeData) return;
     const newQuestionId = Math.random().toString(36).substring(2, 11);
     const currentQuestions = resumeData.resume.application_questions || [];
-    const updatedQuestions = [...currentQuestions, { id: newQuestionId, question: "" }];
-    
-    setResumeData(prev => {
+    const updatedQuestions = [
+      ...currentQuestions,
+      { id: newQuestionId, question: "" },
+    ];
+
+    setResumeData((prev) => {
       if (!prev) return prev;
       return {
         ...prev,
         resume: {
           ...prev.resume,
           application_questions: updatedQuestions,
-        }
+        },
       };
     });
 
@@ -309,16 +339,18 @@ export default function ResumePreviewPage() {
   const handleDeleteQuestion = async (questionId: string) => {
     if (!resumeData) return;
     const currentQuestions = resumeData.resume.application_questions || [];
-    const updatedQuestions = currentQuestions.filter(q => q.id !== questionId);
-    
-    setResumeData(prev => {
+    const updatedQuestions = currentQuestions.filter(
+      (q) => q.id !== questionId,
+    );
+
+    setResumeData((prev) => {
       if (!prev) return prev;
       return {
         ...prev,
         resume: {
           ...prev.resume,
           application_questions: updatedQuestions,
-        }
+        },
       };
     });
 
@@ -338,7 +370,10 @@ export default function ResumePreviewPage() {
     }
   };
 
-  const handleGenerateQuestion = async (questionId: string, questionText: string) => {
+  const handleGenerateQuestion = async (
+    questionId: string,
+    questionText: string,
+  ) => {
     if (!resumeData || !questionText.trim()) return;
     setIsGeneratingQuestionId(questionId);
 
@@ -361,14 +396,14 @@ export default function ResumePreviewPage() {
       }
 
       const data = await response.json();
-      setResumeData(prev => {
+      setResumeData((prev) => {
         if (!prev) return prev;
         return {
           ...prev,
           resume: {
             ...prev.resume,
             application_questions: data.questions,
-          }
+          },
         };
       });
     } catch (err) {
@@ -427,7 +462,6 @@ export default function ResumePreviewPage() {
           }
         }
       `}</style>
-
       {/* Navigation - hidden in print */}
       <nav className="no-print border-b border-hairline bg-white sticky top-0 z-10">
         <div className="max-w-[1200px] w-full mx-auto px-[16px] sm:px-[24px] lg:px-[32px]">
@@ -437,7 +471,7 @@ export default function ResumePreviewPage() {
                 href="/"
                 className="flex items-center gap-[8px] hover:opacity-70 transition-opacity cursor-pointer"
               >
-                <h1 className="text-sm font-semibold tracking-tight text-graphite">
+                <h1 className="text-xl font-semibold tracking-tight text-graphite">
                   Refyn
                 </h1>
               </Link>
@@ -463,7 +497,8 @@ export default function ResumePreviewPage() {
             </div>
           </div>
         </div>
-      </nav>      {/* Sub navigation viewMode tabs - hidden in print */}
+      </nav>{" "}
+      {/* Sub navigation viewMode tabs - hidden in print */}
       <div className="no-print border-b border-hairline bg-white">
         <div className="max-w-[1200px] w-full mx-auto px-[16px] sm:px-[24px] lg:px-[32px]">
           <div className="flex gap-[24px] overflow-x-auto whitespace-nowrap">
@@ -520,12 +555,15 @@ export default function ResumePreviewPage() {
           </div>
         </div>
       </div>
-
       {/* Resume Content */}
-      <main className={`resume-container bg-white max-w-[850px] mx-auto p-[16px] sm:p-[40px] my-[16px] sm:my-[32px] border ${viewMode === 'preview' ? 'border-hairline shadow-subtle-2' : 'border-graphite shadow-none'} print:border-0 print:my-0 print:p-0 print:shadow-none`}>
-        {viewMode === "preview" && (
-          <ResumePreview resume={resume} />
-        )}
+      <main
+        className={`resume-container bg-white max-w-[850px] mx-auto p-[16px] sm:p-[40px] my-[16px] sm:my-[32px] border ${
+          viewMode === "preview"
+            ? "border-hairline shadow-subtle-2"
+            : "border-graphite shadow-none"
+        } print:border-0 print:my-0 print:p-0 print:shadow-none`}
+      >
+        {viewMode === "preview" && <ResumePreview resume={resume} />}
 
         {viewMode === "edit-form" && editedForm && (
           <ResumeEditForm
@@ -573,11 +611,9 @@ export default function ResumePreviewPage() {
           />
         )}
       </main>
-
       <div className="no-print text-center py-8 text-sm text-concrete">
         <p>Click &quot;Export PDF&quot; to save this resume as a PDF file</p>
       </div>
-
       {showConfirmModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-pure-black/55 backdrop-blur-[2px]">
           <div className="bg-white border border-graphite p-[24px] rounded-cards max-w-[400px] w-full mx-[16px] shadow-subtle-2">
