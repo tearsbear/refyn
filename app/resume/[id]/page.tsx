@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import type { ResumeJSON, Experience, Project } from "@/lib/types";
@@ -28,6 +28,7 @@ export default function ResumePreviewPage() {
   const [isGeneratingEmail, setIsGeneratingEmail] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
   const [isGeneratingQuestionId, setIsGeneratingQuestionId] = useState<string | null>(null);
+  const shouldPrintRef = useRef(false);
 
   useEffect(() => {
     const fetchResume = async () => {
@@ -53,8 +54,33 @@ export default function ResumePreviewPage() {
     fetchResume();
   }, [id]);
 
+  useEffect(() => {
+    if (resumeData?.companyName) {
+      const originalTitle = document.title;
+      document.title = `${resumeData.companyName}_JiehanAnandika_Resume`;
+      return () => {
+        document.title = originalTitle;
+      };
+    }
+  }, [resumeData]);
+
+  useEffect(() => {
+    if (viewMode === "preview" && shouldPrintRef.current) {
+      shouldPrintRef.current = false;
+      const timer = setTimeout(() => {
+        window.print();
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [viewMode]);
+
   const handleExportPDF = () => {
-    window.print();
+    if (viewMode === "preview") {
+      window.print();
+    } else {
+      shouldPrintRef.current = true;
+      setViewMode("preview");
+    }
   };
 
   const handleRegenerate = async () => {
