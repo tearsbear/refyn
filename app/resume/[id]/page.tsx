@@ -460,6 +460,15 @@ export default function ResumePreviewPage() {
             border: none !important;
             box-shadow: none !important;
           }
+
+          ul {
+            list-style-type: disc !important;
+            padding-left: 20px !important;
+          }
+
+          li {
+            display: list-item !important;
+          }
         }
       `}</style>
       {/* Navigation - hidden in print */}
