@@ -153,6 +153,19 @@
   ],
   "projects": [
     {
+      "title": "Frontend Developer (Website Redesign & Internal Tools)",
+      "company": "Snowball Effect",
+      "location": "Auckland, New Zealand (Remote)",
+      "duration": "Project Based",
+      "bullets": [
+        "Implemented a complete frontend redesign of the company website (https://www.snowballeffect.co.nz/) using React, Mantine UI, and Strapi CMS, simplifying access to top-tier managed funds and high-growth companies.",
+        "Developed and integrated key user-facing sections including the Home page, About page, and Companies & Funds listing screens within a rapid 2-week timeline from onboarding to final deployment.",
+        "Built dynamic data offers page integration and integrated capital raise enquiry forms to streamline investor communication.",
+        "Enhanced internal tools by implementing new features, resolving integration bugs, and establishing email form patterns to improve operational efficiency.",
+        "Collaborated with design and tech teams to translate Figma mockups into clean, responsive navigation layouts and interactive UI elements."
+      ]
+    },
+    {
       "title": "Full Stack Developer (HR Solutions & AI Debriefing)",
       "company": "Wecruit",
       "location": "Seoul, South Korea (Remote)",
